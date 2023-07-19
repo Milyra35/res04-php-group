@@ -125,6 +125,15 @@ class UserController extends AbstractController {
             $this->um->editUser($user);
         }
     }
+
+    public function logoutUser()
+    {
+        if(isset($_POST['submit-log-out']))
+        {
+            session_destroy();
+            header("Location:index.php?route=homepage");
+        }
+    }
 }
 
 ?>
