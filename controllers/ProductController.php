@@ -72,10 +72,13 @@ class ProductController extends AbstractController
     public function addProductToCart() : void
     {
         //When "add to cart" is clicked
-        if(isset($_POST['add-product_id']))
+        if(isset($_POST['add-to-cart']) && isset($_POST['product_id']))
         {
-            $product = $this->manager->getProductById($_POST['product_id']);
-            array_push($_SESSION['cart'], $product);
+            $product_id = $_POST['product_id'];
+            $product = $this->manager->getProductById($product_id);
+            $_SESSION['cart'][] = $product;
+            //$category_id = $_SESSION['category_id'];
+            //header("Location:index.php?route=category_id=$category_id");
         }
     }
     

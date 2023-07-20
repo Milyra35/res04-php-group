@@ -43,6 +43,8 @@ class Router
                 $_SESSION['category_id'] = $category_id;
                 $category = $this->cc->getCategoryById($category_id);
                 $this->pc->getProductByCategory($category);
+                $this->pc->addProductToCart();
+                $this->oc->addCartToOrder();
             }
         }
         else
@@ -52,5 +54,5 @@ class Router
         }
     }
 }
-//&& isset($_GET['category_id'])
+
 ?>

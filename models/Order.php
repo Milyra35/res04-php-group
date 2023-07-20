@@ -1,10 +1,10 @@
 <?php
 
 class Order {
-    private $id;
+    private ?int $id;
     private $date;
     private $amount;
-    private $user_id;
+    private User $user_id;
     private $products = [];
 
     public function __construct($date, $amount, $user_id){
@@ -15,10 +15,10 @@ class Order {
         $this->products = [];
     }
 
-    public function getId(){
+    public function getId() : ?int {
         return $this->id;
     }
-    public function setId($id){
+    public function setId($id) : void {
         $this->id = $id;
     }
 
@@ -39,10 +39,10 @@ class Order {
     }
 
 
-    public function getUser_id(){
-        return $this->amount;
+    public function getUser_id(): User{
+        return $this->user_id;
     }
-    public function setUser_id($user_id){
+    public function setUser_id($user_id) : void{
         $this->user_id = $user_id;
     }
 

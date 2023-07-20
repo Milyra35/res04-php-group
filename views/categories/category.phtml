@@ -2,7 +2,7 @@
 <!--With this html, we will see all products of a category-->
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
     <div class="col-md-6 p-lg-5 mx-auto my-5">
-      <?php  $products = $data; ?>
+      <?php  $products = $data;?>
       <h1 class="display-3 fw-bold"><?= $_SESSION['category']->getName(); ?></h1>
       <h3 class="fw-normal text-muted mb-3"></h3>
       <div class="d-flex gap-3 justify-content-center lead fw-normal">
@@ -27,13 +27,19 @@
         <h2 class="display-5"><?= $product->getName(); ?></h2>
         <p class="lead"><?= $product->getDescription(); ?></p>
           <p class="lead"><?= $product->getPrice()." €"; ?></p>
-          <input type="hidden" name="product_id" value="<?= $product->getId(); ?>">
-          <input class="btn btn-sm btn-outline-secondary" type="submit" value="Ajouter au panier" name="add-to-cart">
+
+          <form method="POST" action="index.php?route=category_id=<?=$_SESSION['category']->getId();?>">
+              <input type="hidden" name="product_id" value="<?= $product->getId(); ?>">
+              <input class="btn btn-sm btn-outline-secondary" type="submit" value="Ajouter au panier" name="add-to-cart">
+          </form>
 
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 21px 21px; margin-bottom: 50px;"></div>
     </div>
-    <?php endforeach; ?>
+    <?php
+        endforeach;
+        var_dump($_SESSION['cart']);
+    ?>
    
 
    

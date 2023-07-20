@@ -27,7 +27,7 @@ class UserManager extends AbstractManager
     }
     
     //Add user
-    public function addUser(User $user) : void
+    public function addUser(User $user) : User
     {
         $query = $this->db->prepare("INSERT INTO users (first_name, last_name, email, password, adress, inscription_date) VALUES (:first_name, :last_name, :email, :password, :adress, :inscription_date)");
         $parameters =
@@ -40,6 +40,11 @@ class UserManager extends AbstractManager
             'inscription_date' => $user->getInscription_date()
         ];
         $query->execute($parameters);
+
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $user->setId($this->db->lastInsertId());
+
+        return $user;
     }
     
     //Edit user

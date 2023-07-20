@@ -14,7 +14,7 @@ class OrderController extends AbstractController {
         {
             //Set the date and time of the order
             date_default_timezone_set('Europe/Paris');
-            $date = date('d m y h:i:s');
+            $date = date('y d m h:i:s');
             //Find the user id
             $user_id = $_SESSION['user']->getId();
             //initializes the amount of the order to 0
@@ -28,7 +28,7 @@ class OrderController extends AbstractController {
                 $amount += $price;
             }
             //The function then insert the order to the database
-            $order = $this->manager->insertOrder(new Order($date, $amount, $user_id));
+            $order = $this->manager->insertOrder(new Order($date, $amount, $_SESSION['user']));
         }
         
     }

@@ -1,11 +1,12 @@
 <?php
 
-session_start();
-
 require "models/User.php";
 require "models/Category.php";
-require "models/Media.php";
 require "models/Product.php";
+
+session_start();
+
+require "models/Media.php";
 require "models/Order.php";
 
 require_once "managers/AbstractManager.php";

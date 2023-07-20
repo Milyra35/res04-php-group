@@ -6,12 +6,12 @@ class OrderManager extends AbstractManager {
     public function insertOrder(Order $order){
         
         //Prepare the query
-        $query = $this->db->prepare("INSERT INTO orders (date, amount, user_id) VALUES (:date, :amount, :user_id");
+        $query = $this->db->prepare("INSERT INTO orders (date, amount, user_id) VALUES (:date, :amount, :user_id)");
         //Bind the paramaters
         $parameters = [
                 'date' => $order->getDate(),
                 'amount' => $order->getAmount(),
-                'user_id' => $order->getUser_id()
+                'user_id' => $order->getUser_id()->getId()
             ];
         //Execute the query
         $query->execute($parameters);
