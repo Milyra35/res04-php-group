@@ -78,6 +78,7 @@ class ProductController extends AbstractController
             $product = $this->manager->getProductById($product_id);
             $_SESSION['cart'][] = $product;
             $category_id = $_SESSION['category']->getId();
+
             header("Location:index.php?route=category_id=$category_id");
         }
     }

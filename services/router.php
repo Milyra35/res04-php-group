@@ -49,6 +49,10 @@ class Router
                 $this->pc->addProductToCart();
                 // $this->oc->addCartToOrder();
             }
+            else if($_GET['route'] === "cart")
+            {
+                $this->oc->addCartToOrder();
+            }
             else if($_GET['route'] === "log-out")
             {
                 $this->uc->logoutUser();

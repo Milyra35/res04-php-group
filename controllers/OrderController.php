@@ -6,11 +6,12 @@ class OrderController extends AbstractController {
     {
         $this->manager = new OrderManager();
     }
-    
+
     public function addCartToOrder()
     {
+        $this->render('order/cart.phtml', $_SESSION['cart']);
         //Verify if this variable is defined
-        if($_SESSION['cart'] !== null)
+        if($_SESSION['cart'] !== null && isset($_POST['add-order']))
         {
             //Set the date and time of the order
             date_default_timezone_set('Europe/Paris');
