@@ -14,19 +14,18 @@ class ProductManager extends AbstractManager
     }
     
     //Get products by category
-    public function getProductsByCategory(Category $category) : array
+    public function getProductsByCategory(int $id) : array
     {
         $query = $this->db->prepare
-            ("SELECT products.*, products_categories.category_id 
-            FROM products JOIN products_categories
-            ON products_categories.product_id = products.id
-            WHERE category_id = ?");
-        $query->execute([$category->getId()]);
+            ("SELECT products.* FROM products JOIN products_categories 
+            ON products.id = products_categories.product_id JOIN categories 
+            ON products_categories.product_id = categories.id WHERE products_categories.category_id = ?");
+        $query->execute([$id]);
         $fetch = $query->fetchAll(PDO::FETCH_ASSOC);
         $products = [];
         foreach($fetch as $item)
         {
-            $product = new Product($item['name'], $item['description'], $item['price'], $item['']);
+            $product = new Product($item['name'], $item['description'], $item['price']);
             $product->setId($item['id']);
             array_push($products, $product);
         }

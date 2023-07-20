@@ -91,11 +91,10 @@ class ProductController extends AbstractController
     }
     
     //Get products by category
-    public function getProductByCategory()
+    public function getProductByCategory(Category $category)
     {
         $category_id = $_SESSION['category_id'];
-        $category = $this->cm->getCategoryById($category_id);
-        $products = $this->manager->getProductsByCategory($category);
+        $products = $this->manager->getProductsByCategory($category_id);
         $this->render("categories/category.phtml", $products);
     }
 }

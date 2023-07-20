@@ -5,15 +5,13 @@ class Product {
     private string $name;
     private string $description;
     private $price;
-    private Category $category;
 
 
-    public function __construct($name,$description,$price, $category){
+    public function __construct($name,$description,$price){
         $this->id = null;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
-        $this->category = $category;
     }
 
     public function getId(){
@@ -47,14 +45,14 @@ class Product {
         $this->price = $price;
     }
 
-    public function getCategory() : Category
+    /*public function getCategory() : Category
     {
         return $this->category;
     }
     public function setCategory(Category $category) : void
     {
         $this->category = $category;
-    }
+    }*/
 }
 
 
