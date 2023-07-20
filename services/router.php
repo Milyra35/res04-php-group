@@ -37,9 +37,12 @@ class Router
             {
                 $this->uc->loadUser();
             }
-            else if($_GET['route'] === "category" && isset($_GET['category_id']))
+            else if(str_contains($_GET['route'], "category_id"))
             {
-                $this->pc->getProductsByCategory();
+                list($route, $category_id) = explode("=", $_GET['route']);
+                $_SESSION['category_id'] = $category_id;
+                $category = $this->cc->getCategoryById($category_id);
+                $this->pc->getProductByCategory($category);
             }
         }
         else
@@ -49,5 +52,5 @@ class Router
         }
     }
 }
-
+//&& isset($_GET['category_id'])
 ?>

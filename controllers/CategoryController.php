@@ -53,6 +53,14 @@ class CategoryController extends AbstractController
         
     }
 
+    public function getCategoryById(int $id) : Category
+    {
+        $category = $this->manager->getCategoryById($id);
+        $_SESSION['category'] = $category;
+
+        return $category;
+    }
+
 }
 ?>
 

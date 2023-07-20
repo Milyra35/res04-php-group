@@ -2,7 +2,7 @@
 
 class CategoryManager extends AbstractManager {
 
-    public function getCategoryByName($name)
+    public function getCategoryByName($name) : Category
     {
         $query = $this->db->prepare("SELECT * FROM categories WHERE name = :name"); // Je récupere tout de la table Category qui comporte le nom etabli en parametre.
         $parameter = [
@@ -15,9 +15,11 @@ class CategoryManager extends AbstractManager {
             $category = new Category($result['name'], $result['description']);
             $result->setId('id');
         }
+
+        return $category;
     }
     
-    public function getAllCategories()
+    public function getAllCategories() : array
     {
         $query = $this->db->prepare("SELECT * FROM categories");
         $query->execute();
@@ -49,7 +51,7 @@ class CategoryManager extends AbstractManager {
 
 
 
-    public function insertCategory($name, $description)
+    public function insertCategory($name, $description) : Category
     {
 
         $query = $this->db->prepare("INSERT INTO categories (name, description) VALUES (:name, :description)");
@@ -61,14 +63,26 @@ class CategoryManager extends AbstractManager {
         $query->execute($parameters);
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
-        if(!isset($result)){
+        if(!isset($result)) {
             $category = new Category($result['name'], $result['description']);
             $result->setId('id');
-        }
 
+            return $category;
+        }
     }
 
+    public function getCategoryById(int $id) : Category
+    {
+        $query=$this->db->prepare("SELECT * FROM categories WHERE categories.id = :id");
+        $parameters=['id' => $id];
+        $query->execute($parameters);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
 
+        $category = new Category($result['name'], $result['description']);
+        $category->setId($id);
+
+        return $category;
+    }
 
 }
 

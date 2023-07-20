@@ -26,7 +26,7 @@ class ProductManager extends AbstractManager
         $products = [];
         foreach($fetch as $item)
         {
-            $product = new Product($item['name'], $item['description'], $item['price']);
+            $product = new Product($item['name'], $item['description'], $item['price'], $item['']);
             $product->setId($item['id']);
             array_push($products, $product);
         }

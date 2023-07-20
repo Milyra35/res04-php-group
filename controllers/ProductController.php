@@ -32,7 +32,12 @@ class ProductController extends AbstractController
             {
                 $price = $_POST['price'];
             }
-            $product = new Product($name, $description, $price);
+            if(!empty($_POST['category']))
+            {
+                $category = $this->cm->getCategoryByName($_POST['category']);
+                $id = $category->getId();
+            }
+            $product = new Product($name, $description, $price, $category);
             $this->manager->newProduct($product);
             
             //Render
@@ -86,11 +91,11 @@ class ProductController extends AbstractController
     }
     
     //Get products by category
-    public function getProductByCategory() : void
+    public function getProductByCategory()
     {
-        $category_id = $_GET['category_id'];
-        $this->cm->getCategoryById($category_id);
-        $products = $this->manager->getProductsByCategory();
+        $category_id = $_SESSION['category_id'];
+        $category = $this->cm->getCategoryById($category_id);
+        $products = $this->manager->getProductsByCategory($category);
         $this->render("categories/category.phtml", $products);
     }
 }
