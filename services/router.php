@@ -43,8 +43,15 @@ class Router
                 $_SESSION['category_id'] = $category_id;
                 $category = $this->cc->getCategoryById($category_id);
                 $this->pc->getProductByCategory($category);
+            }
+            else if($_GET['route'] === "add-to-cart")
+            {
                 $this->pc->addProductToCart();
-                $this->oc->addCartToOrder();
+                // $this->oc->addCartToOrder();
+            }
+            else if($_GET['route'] === "log-out")
+            {
+                $this->uc->logoutUser();
             }
         }
         else

@@ -21,6 +21,17 @@ class OrderManager extends AbstractManager {
         //return Order
         return $order;
     }
+
+    public function editOrder(Order $order) : void
+    {
+        $query=$this->db->prepare("UPDATE orders SET date=:date, amount=:amount, user_id=:user_id");
+        $parameters=[
+            'date' => $order->getDate(),
+            'amount' => $order->getAmount(),
+            'user_id' => $order->getUser_id()->getId()
+        ];
+        $query->execute($parameters);
+    }
 }
 
 ?>

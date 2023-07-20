@@ -14,7 +14,7 @@ class OrderController extends AbstractController {
         {
             //Set the date and time of the order
             date_default_timezone_set('Europe/Paris');
-            $date = date('y d m h:i:s');
+            $date = date('Y-m-d H:i:s');
             //Find the user id
             $user_id = $_SESSION['user']->getId();
             //initializes the amount of the order to 0

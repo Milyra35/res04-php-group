@@ -28,7 +28,7 @@
         <p class="lead"><?= $product->getDescription(); ?></p>
           <p class="lead"><?= $product->getPrice()." €"; ?></p>
 
-          <form method="POST" action="index.php?route=category_id=<?=$_SESSION['category']->getId();?>">
+          <form method="POST" action="index.php?route=add-to-cart">
               <input type="hidden" name="product_id" value="<?= $product->getId(); ?>">
               <input class="btn btn-sm btn-outline-secondary" type="submit" value="Ajouter au panier" name="add-to-cart">
           </form>
